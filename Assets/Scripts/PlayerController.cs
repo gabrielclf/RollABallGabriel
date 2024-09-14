@@ -9,6 +9,7 @@ public class MoveBall : MonoBehaviour
     private Rigidbody rb;
     public float velocidade;
     private int count; //Observação (0): Variável Global
+    //Devo mandar 
     public TextMeshProUGUI countText, winText;
     void SetCountText()
     {
