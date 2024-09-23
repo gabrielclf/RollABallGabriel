@@ -8,14 +8,19 @@ public class MoveBall : MonoBehaviour
 {
     private Rigidbody rb;
     public float velocidade;
-    private int count; //Observação (0): Variável Global
+    private int count;
+    private int winCon = 15;
     //Devo mandar 
     public TextMeshProUGUI countText, winText;
+
+    public Reset reiniciar;
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 3) //Observação (3): Consideramos 12 a quantidade de Pickups da cena!
+        countText.text = "Cubos: " + count.ToString()+"/"+winCon;
+        if (count >= winCon) { //Observação (3): Consideramos 12 a quantidade de Pickups da cena!
             winText.text = "YOU WIN!!";
+            reiniciar.GameReset();
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,13 +28,12 @@ public class MoveBall : MonoBehaviour
         SetCountText();
         if (other.gameObject.tag == "PickUp")
             other.gameObject.SetActive(false);
-        count = count + 1;//Observação (2): Inserir depois de other.gameObject.SetActive(false);
+        count++;//Observação (2): Inserir depois de other.gameObject.SetActive(false);
     }
     void Start()
     {
         count = 0;
         rb = GetComponent<Rigidbody>();
-        SetCountText();
         winText.text = "";
     }
 
@@ -40,5 +44,6 @@ public class MoveBall : MonoBehaviour
         float movimentoVertical = Input.GetAxis("Vertical");
         Vector3 movimento = new Vector3(movimentoHorizontal, 0.0f, movimentoVertical);
         rb.AddForce(movimento * velocidade);
+        SetCountText();
     }
 }
