@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082e3994b88e31449bcadbc02a4c00f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 1.1
+  velocidade: 2
   countText: {fileID: 2037556964}
   winText: {fileID: 2118748301}
   reiniciar: {fileID: 454778428}
